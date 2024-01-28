@@ -14,16 +14,16 @@
 				</br>
 				<input placeholder="请输入需要监听的股票代码" id="code_input" type="number" />
 
-				<button onclick="updateStock(0)">添加</button>
+				<button class="button-41" onclick="updateStock(0)">添加</button>
 
-				<button onclick="updateStock(1)">删除</button>
+				<button class="button-41" onclick="updateStock(1)">删除</button>
 
 				</br>
 				<h5>设置查询间隔时间,单位秒</h5>
 				<input placeholder="请输入查询间隔时间" id="interval_input" type="number" />
-				<button onclick="startMonitor()">开始</button>
+				<button class="button-41" onclick="startMonitor()">开始</button>
 
-				<button onclick="pasueMonitor()">暂停</button>
+				<button class="button-41" onclick="pasueMonitor()">暂停</button>
 				</br>
 				</br>
 
@@ -42,15 +42,58 @@
 		button {
 			width: 80px;
 			height: 40px;
-			margin-left: 10px;
 		}
 
-		input {
-			height: 40px;
-			padding-left: 10px;
-			border-radius: 5px;
-			margin-right: 10px;
+		input{
+		    outline-style: none ;
+		    border: 1px solid #ccc; 
+		    border-radius: 3px;
+		    padding: 6px;
+		    width: 300px;
+			height: 30px;
+		    font-size: 14px;
+		    font-family: "Microsoft soft";
 		}
+		input:focus{
+		    border-color: #66afe9;
+		    outline: 0;
+		    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+		    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+		}
+
+		
+		.button-41 {  
+
+					  margin-left: 10px;
+		              background-color: initial;
+		              background-image: linear-gradient(-180deg, #00D775, #00BD68);
+		              border-radius: 5px;
+		              box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+		              color: #FFFFFF;
+		              cursor: pointer;
+		              display: inline-block;
+		              font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+		              height: 44px;
+		              line-height: 44px;
+		              outline: 0;
+		              overflow: hidden;
+		              padding: 0 0px;
+		              pointer-events: auto;
+		              position: relative;
+		              text-align: center;
+		              touch-action: manipulation;
+		              user-select: none;
+		              -webkit-user-select: none;
+		              vertical-align: top;
+		              white-space: nowrap;
+		              /* width: 100%; */
+		              z-index: 9;
+		              border: 0;
+		            }
+		  
+		            .button-41:hover {
+		              background: #00bd68;
+		            }
 	</style>
 	<script>
 		var intervalId;
@@ -112,7 +155,7 @@
 		}
 
 		function get_quote(code) {
-			var url = "https://push2.eastmoney.com/api/qt/stock/get";
+			var url = "http://push2.eastmoney.com/api/qt/stock/get";
 			var params = {
 				"fields": "f58,f734,f107,f57,f43,f59,f169,f170,f152,f177,f111,f46,f60,f44,f45,f47,f260,f48,f261,f279,f277,f278,f288,f19,f17,f531,f15,f13,f11,f20,f18,f16,f14,f12,f39,f37,f35,f33,f31,f40,f38,f36,f34,f32,f211,f212,f213,f214,f215,f210,f209,f208,f207,f206,f161,f49,f171,f50,f86,f84,f85,f168,f108,f116,f167,f164,f162,f163,f92,f71,f117,f292,f51,f52,f191,f192,f262,f294,f295,f269,f270,f256,f257,f285,f286",
 				"secid": get_full_security_code(code)
@@ -126,7 +169,9 @@
 					var msg = responseData.data.f58 + "   当前股价" + responseData.data.f43 / 100 + "   当前涨幅" + responseData
 						.data.f170 / 100 + "%";
 					document.getElementById(responseData.data.f57).innerHTML = msg;
-					voiceBroadcast(msg);
+					virtualClick(function(){
+						voiceBroadcast(msg);
+					});
 				}
 			};
 
@@ -136,6 +181,23 @@
 			xhr.send();
 
 		}
+		
+		 const virtualClick = callback => {
+		 let button = document.createElement('button')
+		      button.textContent = '点击我'
+		 // 添加点击事件处理程序
+		      button.addEventListener('click', function () {
+		 console.log('模拟点击')
+		        callback && callback()
+		 })
+		 // 模拟用户点击事件
+		 let event = new MouseEvent('click', {
+		        view: window,
+		        bubbles: true,
+		        cancelable: true
+		 })
+		      button.dispatchEvent(event)
+		 }
 
 
 
