@@ -13,7 +13,8 @@
 				</div>
 				</br>
 				<input placeholder="请输入需要监听的股票代码" id="code_input" type="number" />
-
+				<br/>
+				<br/>
 				<button class="button-41" onclick="updateStock(0)">添加</button>
 
 				<button class="button-41" onclick="updateStock(1)">删除</button>
@@ -21,6 +22,8 @@
 				</br>
 				<h5>设置查询间隔时间,单位秒</h5>
 				<input placeholder="请输入查询间隔时间" id="interval_input" type="number" />
+				<br/>
+				<br/>
 				<button class="button-41" onclick="startMonitor()">开始</button>
 
 				<button class="button-41" onclick="pasueMonitor()">暂停</button>
@@ -49,7 +52,7 @@
 		    border: 1px solid #ccc; 
 		    border-radius: 3px;
 		    padding: 6px;
-		    width: 300px;
+		    width: 100%;
 			height: 30px;
 		    font-size: 14px;
 		    font-family: "Microsoft soft";
@@ -64,7 +67,7 @@
 		
 		.button-41 {  
 
-					  margin-left: 10px;
+					  margin-right: 10px;
 		              background-color: initial;
 		              background-image: linear-gradient(-180deg, #00D775, #00BD68);
 		              border-radius: 5px;
