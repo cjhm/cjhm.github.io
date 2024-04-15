@@ -1,0 +1,23 @@
+
+<div id="auth-status">
+</div>
+<script>
+    window.onload = function () {
+        console.log('加载完毕');
+        app.checkUser({
+            userId: "xJtKDNPNlJFPwSPoz+qwLX3XIqjaEQxCqoW2AMZFhRrYODKdEwMf4Q==",
+            success: function (res) {
+                console.log(res);
+                if (res.code === 200) {
+                    window.location.href = 'http://10.10.31.168:61000/home/test?userId=1be5df9b-82f8-ecde-9819-3a02d43c85e4&authCode=b4db72e7a7354e628b3ce715231a635e';
+                } else {
+                    document.getElementById('auth-status').innerHTML = '身份认证失败';
+                }
+            },
+            error: function (error) {
+                console.error('Authentication error:', error);
+                document.getElementById('auth-status').innerHTML = '身份认证过程中发生错误';
+            }
+        });
+    }
+</script>
