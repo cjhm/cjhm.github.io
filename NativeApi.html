@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+            <meta name="format-detection" content="telephone=no" />
+            <meta charset="utf-8" />
+            <title>nativeApi</title>
+            <script type="text/javascript">
+                function imageUpload() {
+                    HybridJSInterface.chooseFileByJavaScriptFunction('2');
+                }
+            
+            function scanQRCode() {
+                HybridJSInterface.startScanQR('title');
+            }
+            
+            function share() {
+                <!--                                HybridJSInterface.startShare({"type":3,"content":"https://www.baidu.com","textContent":"分享内容","title":"分享标题","shareIcon":"http://183.239.137.70:16306//Icons/20163124043154.png"});-->
+                <!--                    HybridJSInterface.startShare({"type":4,"content":["https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2737022074,3951676028&fm=58&w=258&h=258&img.GIF"],"title":"","shareIcon":""});-->
+                HybridJSInterface.startShare( '{"type":3,"content":"https://www.baidu.com","title":"分享","shareIcon":"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2737022074,3951676028&fm=58&w=258&h=258&img.GIF"}');
+
+            }
+            
+            function locate() {
+                HybridJSInterface.startLocate();
+            }
+            
+            function getImageUrlFromAPP(a) {
+                var scan = document.getElementById('uploadImg');
+                var imgs = a.split('|');
+                for (var i = 0; i < imgs.length; i++) {
+                    var pre = "<img width=\"41.4\" height=\"76.8\"" + "src=" + imgs[i] + "></img>";
+                    scan.insertAdjacentHTML("afterEnd", pre);
+                }
+            }
+            
+            function HybridJSInterfaceDidFinishedScan(a) {
+                alert(a);
+                var scan = document.getElementById('scanQR');
+                var result = "<p>识别内容:" + a + "</p>";
+                scan.insertAdjacentHTML("afterEnd", result);
+            }
+            
+            function HybridJSInterfaceDidCancelScan() {
+                alert('扫描已取消');
+            }
+            
+            function HybridJSInterfaceDidFinishLocate(coordinate) {
+                var scan = document.getElementById('location');
+                var result = "<p>当前经纬度:" + coordinate.longitude + ',' + coordinate.latitude + "</p>";
+                scan.insertAdjacentHTML("afterEnd", result);
+            }
+            
+            function HybridJSInterfaceDidFailLocate(error) {
+                alert(error);
+            }
+            
+            function saveImage() {
+                HybridJSInterface.save("https://wap.elefu.cn:21144/NewsImg/20193129113157b.png");
+            }
+            
+            function queryVersion() {
+                var version = HybridJSInterface.getAppVersion();
+                <!--            alert(version);-->
+            }
+            
+            function didFinishInject(result) {
+                console.log(result);
+            }
+            
+            function HybridJSInterfaceDidGetAppVersion(version) {
+                console.log(version);
+                alert(version);
+            }
+            function HybridJSInterfaceDidFinishBindCamera(result) {
+                alert(result.msg);
+            }
+            function appGoBack() {
+                alert("返回上一级界面");
+                HybridJSInterface.goBack();
+<!--                app.goBack();-->
+            }
+            
+            function appCameraPreView1() {
+                <!--            HybridJSInterface.startCameraPreview('{"type":2,"appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/","appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=","adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==","deviceId":"4C07078PAG3358E"}');-->
+                <!--<!--4J059D3PAJ79FC7            -->-->
+                HybridJSInterface.startCameraPreview(
+                                                     '{"type":1,"appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/","appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=","adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==","deviceId":"4C07078PAG3358E"}'
+                                                     );
+                                                     
+            }
+            
+            function appCameraPreView() {
+<!--                app.startCameraPreview({-->
+<!--                                       "type":2,-->
+<!--                                       "appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/",-->
+<!--                                       "appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=",-->
+<!--                                       "adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==",-->
+<!--                                       "deviceId":"4J059D3PAJ79FC7"-->
+<!--                                       }-->
+<!--                );-->
+                HybridJSInterface.startCameraPreview('{"type":2,"appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/","appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=","adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==","deviceId":"4J059D3PAJ79FC7"}');
+                                                     <!--4J059D3PAJ79FC7            -->
+                                                     <!--            HybridJSInterface.startCameraPreview('{"type":1,"appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/","appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=","adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==","deviceId":"4F03CC7PAGB0317"}');-->
+                                                     
+            }
+            
+            function switchWKWebView() {
+                HybridJSInterface.switchWKWebView();
+            }
+            function setAppNavigation() {
+                HybridJSInterface.setNavigation('{"type":1, "title":"跳转","icon":"http://wap.elefu.cn:20144/HotFunctionImages/08/08.png","url":"https://www.baidu.com"}');
+            }
+            function openLocalBrowser() {
+                HybridJSInterface.openBrowser('https://www.baidu.com');
+            }
+            function appbindCamera() {
+                HybridJSInterface.bindCamera('{"appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/","appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=","adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==","deviceId":"4J059D3PAJ79FC7","bindLimit":"0"}');
+<!--                app.bindCamera({"appId":"rO591B986VQDZs51vgz6ATkApLzzz0q/","appSecret":"UQCgFSr0JVtklZmUgM5QjXhrGylIkCsqNqz6LKsqzgE=","adminPhone":"zY8/kObZZeKDXR4EwB2Vwg==","deviceId":"4J059D3PAJ79FC7","bindLimit":"0",-->
+<!--                               success(res){-->
+<!--                               alert.res.msg;-->
+<!--                               }-->
+<!--                               });-->
+            }
+            function appstartScan() {
+                HybridJSInterface.startScan('{"title":"扫描二维码","supportCodeType":["org.iso.QRCode","org.iso.PDF417"]}');
+            }
+            function appstartScanAll() {
+                HybridJSInterface.startScan('{"title":"扫描二维码","supportCodeType":[]}');
+            }
+            function appstartScanQR() {
+                HybridJSInterface.startScan('{"title":"扫描二维码","supportCodeType":["org.iso.QRCode"]}');
+            }
+            function appstartScanBitMap() {
+                HybridJSInterface.startScan('{"title":"扫描二维码","supportCodeType":["com.sino.BitMapCode"]}');
+            }
+            function HybridJSInterfaceAppDidFinishedScan(result) {
+                alert("扫描结果:" + result.strScanned + "条码格式:" + result.codeType);
+            }
+            function HybridJSInterfaceAppDidCancelScan() {
+                alert("扫描取消");
+            }
+            function appGoWeb() {
+                HybridJSInterface.webPage('{"uuid":"10043"}');
+<!--                    app.goWebPage({-->
+<!--                                  uuid:10043-->
+<!--                                  });-->
+            }
+            function bindTicket() {
+                HybridJSInterface.manualBind('{"OrderNo":"28","UploadFlag":"Y","FileMaxSize":"100"}');
+<!--                    app.manualBind({-->
+<!--                                   orderNo:"28",-->
+<!--                                   needUploadImage:true,-->
+<!--                                   fileMaxSize:100,-->
+<!--                                   success(res) {-->
+<!--                                    alert(res.data.orderNo);-->
+<!--                                   },-->
+<!--                                   fail(res) {-->
+<!--                                    alert(res.msg);-->
+<!--                                   },-->
+<!--                                   cancel(res){-->
+<!--                                   alert(res.msg);-->
+<!--                                   }-->
+<!--                                   });-->
+            }
+            function HybridJSInterfaceManualBindResult(result) {
+                alert("订单号:" + result.OrderNo + "票号:" + result.TicketCode + "结果:" + result.BackCode + "结果描述:" + result.BackMsg);
+            }
+            function jsTest() {
+                HybridJSInterface.appJsTest({
+                                onlyFromCamera:true,
+                                         success(res) {
+                                            alert(res);
+                                         }
+                                         });
+            }
+            function appIdentifyBankCard() {
+                HybridJSInterface.identiyBankcard();
+<!--                    app.identiyBankcard({-->
+<!--                                        success(res) {-->
+<!--                                            alert(res.data.cardNo);-->
+<!--                                        },-->
+<!--                                        fail(res) {-->
+<!--                                            alert(res.msg);-->
+<!--                                        }-->
+<!--                    });-->
+            }
+            function HybridJSInterfaceAppDidFinishIdentify(res) {
+                alert("识别结果:" + res.BackCode + "识别描述:" + res.BackMsg + "卡号:" + res.BankCode + "银行名称:" + res.BankName);
+            }
+            function HybridJSInterfaceAppDidCancelIdentiy() {
+                alert("取消识别");
+            }
+            function getJsValue() {
+                return {"value":"test"};
+            }
+            </script>
+            <style>a {
+                text-decoration: none;
+            }
+            
+            a:visited {
+                color: #6190e8;
+            }
+            
+            a:link {
+                color: #6190e8;
+            }
+            
+            a:active {
+                color: #A1BEEF;
+            }
+            
+            .btn_normal {
+                position: relative;
+                font-size: 0.9rem;
+                width: 46%;
+                height: 3rem;
+                border-width: 0;
+                background-color: #6190e8;
+                /*background-clip: #A1BEEF;*/
+                margin-top: 0.8rem;
+                margin-left: 2%;
+                margin-right: 2%;
+                /* flex-grow: 1; */
+                border-width: 1px;
+                border-style: solid;
+                ;
+                border-color: #6190e8;
+                border-radius: .2rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                outline: none;
+                color: #fff;
+                justify-content: center;
+                text-align: center;
+                text-decoration: none;
+                box-sizing: border-box;
+                align-items: center;
+                display: flex;
+                /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0); */
+            }
+            
+            .btn_normal:active {
+                background-color: #A1BEEF;
+                border-color: #A1BEEF;
+                color: rgba(255, 255, 255, 0.8);
+            }
+            
+            div {
+                -webkit-flex-direction: row;
+                flex-direction: row;
+                display: flex;
+                display: -webkit-flex;
+                flex-wrap: wrap;
+                align-content: space-between;
+            }
+            
+            body {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-user-select: none;
+            }</style>
+            </head>
+    
+    <body ontouchstart>
+        <div>
+            <a class="btn_normal" id="uploadImg" onclick="imageUpload()">图片上传</a>
+            <!--            <br/>-->
+            <a class="btn_normal"id="scanQR" onclick="scanQRCode()">二维码扫描</a>
+            <!--            <br />-->
+            <a class="btn_normal" onclick="share()">分享</a>
+            <!--            <br />-->
+            <a class="btn_normal" id="location" id = "location" onclick="locate()">定位</a>
+            <!--            <br />-->
+            <a class="btn_normal"id="save" onclick="saveImage()">保存图片</a>
+            <!--            <br />-->
+            <a class="btn_normal" id="getAppVersion" onclick="queryVersion()">获取app版本号</a>
+            <a class="btn_normal" id="backItem" onclick="appGoBack()">返回上一级页面</a>
+            <a class="btn_normal" id="cameraPreview" onclick="appCameraPreView1()">跳转摄像头预览</a>
+            <a class="btn_normal" id="cameraPreview" onclick="appCameraPreView()">跳转摄像头预览</a>
+            <a class="btn_normal" id="setNavigation" onclick="setAppNavigation()">设置右侧导航栏</a>
+            <a class="btn_normal" id="bindCamera" onclick="appbindCamera()">绑定摄像头</a>
+            <a class="btn_normal" id="startScan" onclick="appstartScan()">跳转扫描</a>
+            <a class="btn_normal" id="startScan" onclick="appstartScanAll()">跳转扫描,无限制</a>
+            <a class="btn_normal" id="startScan" onclick="appstartScanQR()">跳转二维码扫描</a>
+            <a class="btn_normal" id="startScan" onclick="appstartScanBitMap()">跳转黑标扫描</a>
+            <a class="btn_normal" id="startScan" onclick="appGoWeb()">跳转WebPost</a>
+            <a class="btn_normal" id="startScan" onclick="bindTicket()">手动绑票</a>
+            <a class="btn_normal" id="startScan" onclick="jsTest()">js回调</a>
+            <a class="btn_normal" id="startScan" onclick="appIdentifyBankCard()">识别银行卡</a>
+            <a href="#" style="display:none;">dummy link</a>
+                
+        </div>
+        <br />
+        <p>跳转热门功能示例: <a href="elove://route?action=goPage&functionid=28">网点代销费</a></p>
+        <script type="text/javascript">
+            window.onload = function() {
+                var u = navigator.userAgent;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                                      if (isiOS) {
+                                      var div = document.getElementsByTagName("div")[0];
+                                      div.innerHTML = div.innerHTML + "<a class='btn_normal' =\"a\" onclick=\"switchWKWebView()\">切换wkwebview</a>";
+                                      }
+                                      }
+                                      </script>
+        <a onclick= "openLocalBrowser()">跳转safari</a>
+        
+    </body>
+    
+</html>
