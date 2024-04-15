@@ -4,7 +4,10 @@
 <script>
     window.onload = function () {
         console.log('加载完毕');
-        app.checkUser({
+        setTimeout(function() {
+    // 延迟1秒后执行的函数
+    console.log("Delayed function");
+            app.checkUser({
             userId: "xJtKDNPNlJFPwSPoz+qwLX3XIqjaEQxCqoW2AMZFhRrYODKdEwMf4Q==",
             success: function (res) {
                 console.log(res);
@@ -19,5 +22,7 @@
                 document.getElementById('auth-status').innerHTML = '身份认证过程中发生错误';
             }
         });
+}, 1000);
+        
     }
 </script>
