@@ -189,6 +189,14 @@
 <!--                                        }-->
 <!--                    });-->
             }
+                function appCheckUser() {
+                    app.checkUser({
+                        userId:"123456",
+                        success(result) {
+                            alert(result.code + result.msg);
+                        }
+                                  })
+                }
             function HybridJSInterfaceAppDidFinishIdentify(res) {
                 alert("识别结果:" + res.BackCode + "识别描述:" + res.BackMsg + "卡号:" + res.BankCode + "银行名称:" + res.BankName);
             }
@@ -293,6 +301,7 @@
             <a class="btn_normal" id="startScan" onclick="bindTicket()">手动绑票</a>
             <a class="btn_normal" id="startScan" onclick="jsTest()">js回调</a>
             <a class="btn_normal" id="startScan" onclick="appIdentifyBankCard()">识别银行卡</a>
+            <a class="btn_normal" id="startScan" onclick="appCheckUser()">校验用户</a>
             <a href="#" style="display:none;">dummy link</a>
                 
         </div>
@@ -310,7 +319,7 @@
                                       }
                                       </script>
         <a onclick= "openLocalBrowser()">跳转safari</a>
-        
+      
     </body>
     
 </html>
